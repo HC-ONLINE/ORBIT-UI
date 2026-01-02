@@ -7,5 +7,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  site: 'https://HC-ONLINE.github.io', 
+  base: '/ORBIT-UI', 
+  output: 'static', // GitHub Pages solo soporta sitios estáticos
 });
