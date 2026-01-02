@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import NavLinkComponent from "@components/ui/NavLink.astro";
+
+const baseURL = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -32,11 +34,13 @@ import NavLinkComponent from "@components/ui/NavLink.astro";
       <h2 class="text-lg font-medium">Estados</h2>
 
       <div class="flex gap-6">
-        <NavLinkComponent href="/components/nav-link" exact>
+        <NavLinkComponent href={`${baseURL}/components/nav-link`} exact>
           Activo
         </NavLinkComponent>
 
-        <NavLinkComponent href="/no-existe"> Inactivo </NavLinkComponent>
+        <NavLinkComponent href={`${baseURL}/no-existe`}>
+          Inactivo
+        </NavLinkComponent>
       </div>
     </section>
 

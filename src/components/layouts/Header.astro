@@ -1,5 +1,6 @@
 ---
 import NavLink from "@components/ui/NavLink.astro";
+const baseURL = import.meta.env.BASE_URL;
 ---
 
 <header class="border-b border-(--color-surface-stroke)">
@@ -13,13 +14,13 @@ import NavLink from "@components/ui/NavLink.astro";
 
     <ul class="flex items-center gap-6">
       <li>
-        <NavLink href="/">Overview</NavLink>
+        <NavLink href={`${baseURL}`}>Overview</NavLink>
       </li>
       <li>
-        <NavLink href="/tokens">Tokens</NavLink>
+        <NavLink href={`${baseURL}/tokens`}>Tokens</NavLink>
       </li>
       <li>
-        <NavLink href="/components">Components</NavLink>
+        <NavLink href={`${baseURL}/components`}>Components</NavLink>
       </li>
     </ul>
   </nav>
