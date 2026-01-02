@@ -1,0 +1,82 @@
+---
+/**
+ * Card — componente estructural, no interactivo por defecto
+ */
+
+type Variant = "default" | "muted";
+type State = "base" | "interactive" | "disabled";
+type As = "div" | "article";
+
+const {
+  variant = "default",
+  state = "base",
+  as = "div",
+  class: className = "",
+} = Astro.props as {
+  variant?: Variant;
+  state?: State;
+  as?: As;
+  class?: string;
+};
+
+/* --- Validaciones de contrato --- */
+if (variant === "muted" && state === "interactive") {
+  console.warn(
+    "[Card] Combinación inválida: variant='muted' no puede ser interactive."
+  );
+}
+
+const isInteractive = state === "interactive";
+const isDisabled = state === "disabled";
+
+/* --- Clases base --- */
+const baseClasses = ["rounded-lg", "border", "p-4", "transition-colors"];
+
+/* --- Variantes --- */
+const variantClasses: Record<Variant, string[]> = {
+  default: ["bg-(--color-surface-elevated)", "border-(--color-surface-stroke)"],
+  muted: ["bg-(--color-surface-main)", "border-(--color-surface-stroke)"],
+};
+
+/* --- Estados --- */
+const stateClasses: Record<State, string[]> = {
+  base: [],
+  interactive: ["cursor-pointer", "hover:bg-(--color-accent-subtle)"],
+  disabled: ["opacity-60", "pointer-events-none"],
+};
+
+const classes = [
+  ...baseClasses,
+  ...variantClasses[variant],
+  ...stateClasses[state],
+  className,
+].join(" ");
+
+const Tag = as;
+---
+
+<Tag
+  class={classes}
+  tabindex={isInteractive ? "0" : undefined}
+  aria-disabled={isDisabled ? "true" : undefined}
+>
+  {
+    Astro.slots.header && (
+      <div class="mb-2">
+        <slot name="header" />
+      </div>
+    )
+  }
+
+  <div>
+    <slot />
+  </div>
+
+  {
+    Astro.slots.footer && (
+      <div class="mt-3">
+        <slot name="footer" />
+      </div>
+    )
+  }
+</Tag>

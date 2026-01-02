@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  /* --- Surface & Backgrounds (El Vacío) --- */
+  --color-surface-main: #05070a; /* Fondo profundo, casi negro */
+  --color-surface-elevated: #0f172a; /* Capas superiores, como paneles */
+  --color-surface-sunken: #020408; /* Para inputs o áreas de código */
+  --color-surface-stroke: #1e293b; /* Bordes y separadores */
+
+  /* --- Text & Content (Estrellas y Nebulosas) --- */
+  --color-text-primary: #f8fafc; /* Brillo máximo para lectura */
+  --color-text-muted: #94a3b8; /* Texto secundario o de apoyo */
+  --color-text-dim: #64748b; /* Desactivado o placeholders */
+
+  /* --- Accents (Energía Orbital) --- */
+  --color-accent-primary: #38bdf8; /* Azul cian: Acción principal */
+  --color-accent-muted: #0c4a6e; /* Versión sutil para hover/active */
+
+  /* --- Status (System feedback) --- */
+  --color-status-success: #4ade80;
+  --color-status-warning: #fbbf24;
+  --color-status-error: #f87171;
+
+  /* --- Typography Base --- */
+  --font-family-base: "Inter", system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", monospace;
+}

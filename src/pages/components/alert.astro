@@ -1,0 +1,55 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import AlertComponent from "@components/ui/Alert.astro";
+---
+
+<BaseLayout
+  title="Alert · orbit-ui"
+  description="Contrato y uso correcto del componente Alert"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Alert</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Componente informativo para comunicar estado o contexto.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Variantes</h2>
+
+      <div class="space-y-4">
+        <AlertComponent> Mensaje informativo por defecto. </AlertComponent>
+
+        <AlertComponent variant="success">
+          Operación completada correctamente.
+        </AlertComponent>
+
+        <AlertComponent variant="warning">
+          Atención: revisa los datos ingresados.
+        </AlertComponent>
+
+        <AlertComponent variant="error">
+          Error crítico. La acción no pudo completarse.
+        </AlertComponent>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Con título</h2>
+
+      <AlertComponent variant="warning">
+        <span slot="title">Advertencia</span>
+        Este cambio es irreversible.
+      </AlertComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        No uses Alert como toast, modal o contenedor interactivo.
+      </p>
+    </section>
+  </section>
+</BaseLayout>

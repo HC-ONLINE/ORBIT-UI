@@ -1,11 +1,63 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="orbit-ui"
+  description="Design system CSS-first construido con Astro y Tailwind"
+>
+  <section class="mx-auto max-w-4xl px-6 py-16 space-y-16">
+    <!-- Hero -->
+    <header class="space-y-4">
+      <h1 class="text-3xl font-semibold">orbit-ui</h1>
+
+      <p class="text-base text-(--color-text-muted) max-w-xl">
+        Design system CSS-first enfocado en contratos explícitos, tokens
+        semánticos y control de complejidad.
+      </p>
+    </header>
+
+    <!-- Principles -->
+    <section class="space-y-6">
+      <h2 class="text-xl font-medium">Principios</h2>
+
+      <ul class="space-y-3 text-sm text-(--color-text-muted)">
+        <li>Tokens antes que clases</li>
+        <li>Estados explícitos, no implícitos</li>
+        <li>Separación entre estructura, acción y navegación</li>
+        <li>Sin JavaScript innecesario</li>
+        <li>Menos variantes</li>
+      </ul>
+    </section>
+
+    <!-- Scope -->
+    <section class="space-y-6">
+      <h2 class="text-xl font-medium">Alcance</h2>
+
+      <ul class="space-y-3 text-sm text-(--color-text-muted)">
+        <li>Componentes base, no layouts complejos</li>
+        <li>Diseñado para documentación y productos internos</li>
+        <li>No es un UI kit visual</li>
+        <li>No pretende cubrir todos los casos</li>
+      </ul>
+    </section>
+
+    <!-- Navigation hint -->
+    <section class="space-y-4">
+      <p class="text-sm text-(--color-text-muted)">
+        Explora los fundamentos del sistema:
+      </p>
+
+      <ul class="flex gap-6 text-sm">
+        <li>
+          <a href="/tokens" class="text-(--color-accent-primary)">Tokens</a>
+        </li>
+        <li>
+          <a href="/components" class="text-(--color-accent-primary)"
+            >Components</a
+          >
+        </li>
+      </ul>
+    </section>
+  </section>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import NavLinkComponent from "@components/ui/NavLink.astro";
+---
+
+<BaseLayout
+  title="NavLink · orbit-ui"
+  description="Contrato y uso correcto del componente NavLink"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <!-- Intro -->
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">NavLink</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Componente de navegación. Representa rutas, no acciones.
+      </p>
+    </header>
+
+    <!-- Contrato -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contrato</h2>
+      <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
+        <li>Siempre renderiza un enlace.</li>
+        <li>Indica estado activo de forma persistente.</li>
+        <li>No ejecuta acciones.</li>
+        <li>No reemplaza Button.</li>
+      </ul>
+    </section>
+
+    <!-- Estados -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Estados</h2>
+
+      <div class="flex gap-6">
+        <NavLinkComponent href="/components/nav-link" exact>
+          Activo
+        </NavLinkComponent>
+
+        <NavLinkComponent href="/no-existe"> Inactivo </NavLinkComponent>
+      </div>
+    </section>
+
+    <!-- Exact -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Prop exact</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        Cuando <code class="font-mono">exact</code> es verdadero, el enlace solo se
+        considera activo si la ruta coincide exactamente.
+      </p>
+    </section>
+
+    <!-- Antipatrón -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        No uses NavLink para ejecutar acciones. Usa Button.
+      </p>
+    </section>
+  </section>
+</BaseLayout>

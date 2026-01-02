@@ -1,0 +1,55 @@
+---
+type Variant = "info" | "success" | "warning" | "error";
+
+const { variant = "info", class: className = "" } = Astro.props as {
+  variant?: Variant;
+  class?: string;
+};
+
+/* --- Clases base --- */
+const baseClasses = ["rounded-lg", "border", "p-4"];
+
+/* --- Variantes semánticas --- */
+const variantClasses: Record<Variant, string[]> = {
+  info: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-surface-stroke)",
+    "text-(--color-text-primary)",
+  ],
+  success: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-status-success)",
+    "text-(--color-text-primary)",
+  ],
+  warning: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-status-warning)",
+    "text-(--color-text-primary)",
+  ],
+  error: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-status-error)",
+    "text-(--color-text-primary)",
+  ],
+};
+
+const role = variant === "error" || variant === "warning" ? "alert" : "status";
+
+const classes = [...baseClasses, ...variantClasses[variant], className].join(
+  " "
+);
+---
+
+<div class={classes} role={role}>
+  {
+    Astro.slots.title && (
+      <div class="mb-1 font-medium">
+        <slot name="title" />
+      </div>
+    )
+  }
+
+  <div class="text-sm text-(--color-text-muted)">
+    <slot />
+  </div>
+</div>

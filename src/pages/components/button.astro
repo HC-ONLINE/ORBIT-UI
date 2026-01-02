@@ -1,0 +1,46 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ButtonComponent from "@components/ui/Button.astro";
+---
+
+<BaseLayout
+  title="Button · orbit-ui"
+  description="Contrato y uso correcto del componente Button"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Button</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Componente de acción. Ejecuta eventos. No navega.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Variantes</h2>
+
+      <div class="flex gap-4">
+        <ButtonComponent>Primary</ButtonComponent>
+        <ButtonComponent variant="secondary">Secondary</ButtonComponent>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Estado disabled</h2>
+
+      <div class="flex gap-4">
+        <ButtonComponent disabled>Disabled</ButtonComponent>
+        <ButtonComponent variant="secondary" disabled>
+          Disabled secondary
+        </ButtonComponent>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        No uses Button para navegación. Usa NavLink.
+      </p>
+    </section>
+  </section>
+</BaseLayout>

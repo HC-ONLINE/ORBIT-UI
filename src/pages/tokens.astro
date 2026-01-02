@@ -1,0 +1,115 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Tokens · orbit-ui"
+  description="Design tokens semánticos de orbit-ui"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-16">
+    <!-- Header -->
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Tokens</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Los tokens definen el lenguaje visual del sistema. Son semánticos,
+        estables y no conocen componentes.
+      </p>
+    </header>
+
+    <!-- Principles -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Principios</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-(--color-text-muted)">
+        <li>Los tokens representan significado, no apariencia</li>
+        <li>No existen tokens por componente</li>
+        <li>Un token puede usarse en múltiples contextos</li>
+        <li>Los componentes deciden cómo aplicar los tokens</li>
+      </ul>
+    </section>
+
+    <!-- Surface -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Surface</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        Definen capas y profundidad. Usados para fondos, paneles y contenedores.
+      </p>
+
+      <ul class="space-y-1 text-sm">
+        <li><code>--color-surface-main</code></li>
+        <li><code>--color-surface-elevated</code></li>
+        <li><code>--color-surface-sunken</code></li>
+        <li><code>--color-surface-stroke</code></li>
+      </ul>
+
+      <p class="text-xs text-(--color-text-dim)">
+        Ejemplo de uso: <code>bg-(--color-surface-elevated)</code>
+      </p>
+    </section>
+
+    <!-- Text -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Text</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        Controlan jerarquía y legibilidad. No representan estados.
+      </p>
+
+      <ul class="space-y-1 text-sm">
+        <li><code>--color-text-primary</code></li>
+        <li><code>--color-text-muted</code></li>
+        <li><code>--color-text-dim</code></li>
+      </ul>
+
+      <p class="text-xs text-(--color-text-dim)">
+        Ejemplo de uso: <code>text-(--color-text-muted)</code>
+      </p>
+    </section>
+
+    <!-- Accent -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Accent</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        Colores de énfasis para acciones y focos visuales.
+      </p>
+
+      <ul class="space-y-1 text-sm">
+        <li><code>--color-accent-primary</code></li>
+        <li><code>--color-accent-muted</code></li>
+      </ul>
+
+      <p class="text-xs text-(--color-text-dim)">
+        Ejemplo de uso: <code>text-(--color-accent-primary)</code>
+      </p>
+    </section>
+
+    <!-- Status -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Status</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        Tokens de feedback del sistema. No representan acciones.
+      </p>
+
+      <ul class="space-y-1 text-sm">
+        <li><code>--color-status-success</code></li>
+        <li><code>--color-status-warning</code></li>
+        <li><code>--color-status-error</code></li>
+      </ul>
+
+      <p class="text-xs text-(--color-text-dim)">
+        Ejemplo de uso: <code>border-(--color-status-error)</code>
+      </p>
+    </section>
+
+    <!-- Typography -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Typography</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        Definen familias tipográficas base del sistema.
+      </p>
+
+      <ul class="space-y-1 text-sm">
+        <li><code>--font-family-base</code></li>
+        <li><code>--font-family-mono</code></li>
+      </ul>
+    </section>
+  </section>
+</BaseLayout>

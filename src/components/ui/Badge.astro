@@ -1,0 +1,53 @@
+---
+type Variant = "neutral" | "success" | "warning" | "error";
+
+const { variant = "neutral", class: className = "" } = Astro.props as {
+  variant?: Variant;
+  class?: string;
+};
+
+/* --- Clases base --- */
+const baseClasses = [
+  "inline-flex",
+  "items-center",
+  "rounded-md",
+  "px-4",
+  "py-0.5",
+  "text-xs",
+  "font-medium",
+  "border",
+  "whitespace-nowrap",
+];
+
+/* --- Variantes semánticas --- */
+const variantClasses: Record<Variant, string[]> = {
+  neutral: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-surface-stroke)",
+    "text-(--color-text-muted)",
+  ],
+  success: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-status-success)",
+    "text-(--color-text-primary)",
+  ],
+  warning: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-status-warning)",
+    "text-(--color-text-primary)",
+  ],
+  error: [
+    "bg-(--color-surface-elevated)",
+    "border-(--color-status-error)",
+    "text-(--color-text-primary)",
+  ],
+};
+
+const classes = [...baseClasses, ...variantClasses[variant], className].join(
+  " "
+);
+---
+
+<span class={classes}>
+  <slot />
+</span>

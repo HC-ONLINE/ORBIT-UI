@@ -1,0 +1,25 @@
+---
+type Props = {
+  href: string;
+  exact?: boolean;
+  class?: string;
+};
+
+const { href, exact = false, class: className = "" } = Astro.props as Props;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = exact ? currentPath === href : currentPath.startsWith(href);
+
+const baseClasses = ["text-sm", "transition-colors"];
+
+const stateClasses = isActive
+  ? ["text-(--color-text-primary)", "font-medium"]
+  : ["text-(--color-text-muted)", "hover:text-(--color-text-primary)"];
+
+const classes = [...baseClasses, ...stateClasses, className].join(" ");
+---
+
+<a href={href} class={classes} aria-current={isActive ? "page" : undefined}>
+  <slot />
+</a>

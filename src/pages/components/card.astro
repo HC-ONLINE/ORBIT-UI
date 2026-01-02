@@ -1,0 +1,85 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import CardComponent from "@components/ui/Card.astro";
+---
+
+<BaseLayout
+  title="Card · orbit-ui"
+  description="Contrato y uso correcto del componente Card"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <!-- Introducción -->
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Card</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Contenedor estructural para agrupar contenido. No es interactivo por
+        defecto.
+      </p>
+    </header>
+
+    <!-- Contrato -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contrato</h2>
+      <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
+        <li>No ejecuta acciones.</li>
+        <li>No navega.</li>
+        <li>La interactividad es un estado explícito.</li>
+        <li>La navegación se resuelve externamente.</li>
+      </ul>
+    </section>
+
+    <!-- Estados válidos -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Estados válidos</h2>
+
+      <div class="grid gap-4">
+        <CardComponent> Card base (default) </CardComponent>
+
+        <CardComponent state="interactive"> Card interactive (comunica intención) </CardComponent>
+
+        <CardComponent state="disabled"> Card disabled </CardComponent>
+      </div>
+    </section>
+
+    <!-- Variantes -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Variantes</h2>
+
+      <div class="grid gap-4">
+        <CardComponent variant="default"> Variant default </CardComponent>
+
+        <CardComponent variant="muted"> Variant muted </CardComponent>
+      </div>
+    </section>
+
+    <!-- Combinaciones inválidas -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium text-(--color-text-primary)">
+        Combinaciones inválidas
+      </h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        Estas combinaciones no deben usarse. El sistema las desaconseja
+        explícitamente.
+      </p>
+
+      <CardComponent variant="muted" state="interactive">
+        muted + interactive (inválido)
+      </CardComponent>
+    </section>
+
+    <!-- Antipatrón -->
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón común</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        No hagas la Card navegable directamente. Envuelve la Card si necesitas
+        navegación.
+      </p>
+
+      <a href="#" class="block">
+        <CardComponent state="interactive"> Card envuelta en enlace (correcto) </CardComponent>
+      </a>
+    </section>
+  </section>
+</BaseLayout>
