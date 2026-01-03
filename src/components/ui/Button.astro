@@ -29,22 +29,22 @@ const baseClasses = [
 /* --- Variantes --- */
 const variantClasses: Record<Variant, string[]> = {
   primary: [
-    "bg-[var(--color-accent-primary)]",
-    "text-[var(--color-surface-main)]",
-    "hover:bg-opacity-90",
+    "bg-(--color-accent-primary)",
+    "text-(--color-surface-main)",
+    "hover:opacity-90",
   ],
   secondary: [
     "bg-transparent",
     "border",
-    "border-[var(--color-surface-stroke)]",
-    "text-[var(--color-text-primary)]",
-    "hover:bg-[var(--color-surface-elevated)]",
+    "border-(--color-surface-stroke)",
+    "text-(--color-text-primary)",
+    "hover:bg-(--color-surface-elevated)",
   ],
 };
 
 /* --- Estado disabled --- */
 const disabledClasses = disabled
-  ? ["opacity-60", "pointer-events-none"]
+  ? ["opacity-60", "pointer-events-none", "cursor-not-allowed"]
   : ["cursor-pointer"];
 
 const classes = [
