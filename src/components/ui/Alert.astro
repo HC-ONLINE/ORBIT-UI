@@ -49,7 +49,11 @@ const classes = [...baseClasses, ...variantClasses[variant], className].join(
     )
   }
 
-  <div class="text-sm text-(--color-text-muted)">
+  <div
+    class={Astro.slots.title
+      ? "text-sm text-(--color-text-muted)"
+      : "text-sm text-(--color-text-primary)"}
+  >
     <slot />
   </div>
 
