@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+const baseURL = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -50,11 +51,14 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
       <ul class="flex gap-6 text-sm">
         <li>
-          <a href="/tokens" class="text-(--color-accent-primary)">Tokens</a>
+          <a href={`${baseURL}/tokens`} class="text-(--color-accent-primary)"
+            >Tokens</a
+          >
         </li>
         <li>
-          <a href="/components" class="text-(--color-accent-primary)"
-            >Components</a
+          <a
+            href={`${baseURL}/components`}
+            class="text-(--color-accent-primary)">Components</a
           >
         </li>
       </ul>
