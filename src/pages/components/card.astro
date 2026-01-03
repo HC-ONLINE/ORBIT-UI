@@ -35,7 +35,10 @@ import CardComponent from "@components/ui/Card.astro";
       <div class="grid gap-4">
         <CardComponent> Card base (default) </CardComponent>
 
-        <CardComponent state="interactive"> Card interactive (comunica intención) </CardComponent>
+        <CardComponent state="interactive">
+          Card interactive (comunica intención), pero no ejecuta acciones por sí
+          mismo.
+        </CardComponent>
 
         <CardComponent state="disabled"> Card disabled </CardComponent>
       </div>
@@ -50,6 +53,35 @@ import CardComponent from "@components/ui/Card.astro";
 
         <CardComponent variant="muted"> Variant muted </CardComponent>
       </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Density</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        La densidad controla el padding interno de la Card. Permite adaptar el
+        componente a interfaces editoriales o a UI más compacta sin romper el
+        contrato visual.
+      </p>
+
+      <ul class="text-sm text-(--color-text-muted) list-disc pl-5 space-y-1">
+        <li>
+          <strong>comfortable</strong> (default): p-4. Uso general y editorial.
+        </li>
+        <li><strong>compact</strong>: p-3. UI densa, listados o paneles.</li>
+      </ul>
+
+      <p class="text-sm text-(--color-text-muted)">
+        <strong>Nota:</strong>
+        <code>compact</code> no debe usarse en contenido editorial. Su propósito es
+        reducir densidad visual en interfaces complejas.
+      </p>
+
+      <CardComponent density="comfortable">
+        Contenido con densidad comfortable (default)
+      </CardComponent>
+
+      <CardComponent density="compact"> Contenido compacto </CardComponent>
     </section>
 
     <!-- Combinaciones inválidas -->
@@ -78,7 +110,9 @@ import CardComponent from "@components/ui/Card.astro";
       </p>
 
       <a href="#" class="block">
-        <CardComponent state="interactive"> Card envuelta en enlace (correcto) </CardComponent>
+        <CardComponent state="interactive">
+          Card envuelta en enlace (correcto)
+        </CardComponent>
       </a>
     </section>
   </section>

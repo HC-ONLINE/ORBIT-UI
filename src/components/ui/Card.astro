@@ -6,15 +6,18 @@
 type Variant = "default" | "muted";
 type State = "base" | "interactive" | "disabled";
 type As = "div" | "article";
+type Density = "comfortable" | "compact";
 
 const {
   variant = "default",
   state = "base",
+  density = "comfortable",
   as = "div",
   class: className = "",
 } = Astro.props as {
   variant?: Variant;
   state?: State;
+  density?: Density;
   as?: As;
   class?: string;
 };
@@ -30,7 +33,7 @@ const isInteractive = state === "interactive";
 const isDisabled = state === "disabled";
 
 /* --- Clases base --- */
-const baseClasses = ["rounded-lg", "border", "p-4", "transition-colors"];
+const baseClasses = ["rounded-lg", "border", "transition-colors"];
 
 /* --- Variantes --- */
 const variantClasses: Record<Variant, string[]> = {
@@ -41,14 +44,20 @@ const variantClasses: Record<Variant, string[]> = {
 /* --- Estados --- */
 const stateClasses: Record<State, string[]> = {
   base: [],
-  interactive: ["cursor-pointer", "hover:bg-(--color-accent-subtle)"],
+  interactive: ["cursor-pointer", "hover:bg-(--color-surface-sunken)"],
   disabled: ["opacity-60", "pointer-events-none"],
+};
+
+const densityClasses: Record<Density, string[]> = {
+  comfortable: ["p-4"],
+  compact: ["p-3"],
 };
 
 const classes = [
   ...baseClasses,
   ...variantClasses[variant],
   ...stateClasses[state],
+  ...densityClasses[density],
   className,
 ].join(" ");
 
