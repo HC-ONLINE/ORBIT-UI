@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import AlertComponent from "@components/ui/Alert.astro";
+import ButtonComponent from "@components/ui/Button.astro";
 ---
 
 <BaseLayout
@@ -45,10 +46,33 @@ import AlertComponent from "@components/ui/Alert.astro";
     </section>
 
     <section class="space-y-4">
+      <h2 class="text-lg font-medium">Con acciones</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        Alert puede incluir acciones opcionales mediante un slot dedicado. El
+        componente no define ni controla las acciones; solo las aloja.
+      </p>
+      <ul class="text-sm text-(--color-text-muted) list-disc pl-5 space-y-1">
+        <li>Las acciones son <strong>opcionales</strong>.</li>
+        <li>Alert no conoce ni importa componentes de acción.</li>
+        <li>Las acciones se renderizan solo si el slot existe.</li>
+      </ul>
+      <AlertComponent variant="warning">
+        <span slot="title">Advertencia</span>
+        Esta acción no se puede deshacer.
+
+        <div slot="actions">
+          <ButtonComponent variant="secondary">Cancelar</ButtonComponent>
+          <ButtonComponent>Continuar</ButtonComponent>
+        </div>
+      </AlertComponent>
+    </section>
+
+    <section class="space-y-4">
       <h2 class="text-lg font-medium">Antipatrón</h2>
 
       <p class="text-sm text-(--color-text-muted)">
-        No uses Alert como toast, modal o contenedor interactivo.
+        No uses Alert como toast, modal ni como contenedor de flujos complejos.
       </p>
     </section>
   </section>

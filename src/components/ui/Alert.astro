@@ -52,4 +52,12 @@ const classes = [...baseClasses, ...variantClasses[variant], className].join(
   <div class="text-sm text-(--color-text-muted)">
     <slot />
   </div>
+
+  {
+    Astro.slots.actions && (
+      <div class="mt-3 flex gap-2">
+        <slot name="actions" />
+      </div>
+    )
+  }
 </div>
