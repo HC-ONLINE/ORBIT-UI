@@ -9,7 +9,26 @@ const { href, exact = false, class: className = "" } = Astro.props as Props;
 
 const currentPath = Astro.url.pathname;
 
-const isActive = exact ? currentPath === href : currentPath.startsWith(href);
+function normalizePath(p: string) {
+  if (!p) return "/";
+  return p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p;
+}
+
+const normalizedCurrent = normalizePath(currentPath);
+const normalizedHref = normalizePath(href);
+
+let isActive: boolean;
+if (exact) {
+  isActive = normalizedCurrent === normalizedHref;
+} else {
+  if (normalizedHref === "/") {
+    isActive = normalizedCurrent === normalizedHref;
+  } else {
+    isActive =
+      normalizedCurrent === normalizedHref ||
+      normalizedCurrent.startsWith(normalizedHref + "/");
+  }
+}
 
 const baseClasses = ["text-sm", "transition-colors"];
 
