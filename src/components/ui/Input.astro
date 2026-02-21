@@ -1,0 +1,79 @@
+---
+type Type = "text" | "email" | "password" | "number" | "tel" | "url" | "search";
+
+const {
+  type = "text",
+  id,
+  name,
+  value,
+  placeholder,
+  disabled = false,
+  invalid = false,
+  required = false,
+  class: className = "",
+  ...rest
+} = Astro.props as {
+  type?: Type;
+  id?: string;
+  name?: string;
+  value?: string | number;
+  placeholder?: string;
+  disabled?: boolean;
+  invalid?: boolean;
+  required?: boolean;
+  class?: string;
+  [key: string]: any;
+};
+
+/* --- Clases base --- */
+const baseClasses = [
+  "flex",
+  "w-full",
+  "rounded-md",
+  "border",
+  "bg-(--color-surface-main)",
+  "px-3",
+  "py-2",
+  "text-sm",
+  "text-(--color-text-primary)",
+  "placeholder:text-(--color-text-muted)",
+  "transition-colors",
+  "focus:outline-none",
+  "focus:border-(--color-accent-primary)",
+];
+
+/* --- Estados --- */
+const stateClasses = [];
+
+if (invalid) {
+  stateClasses.push(
+    "border-(--color-status-error)",
+    "focus:border-(--color-status-error)"
+  );
+} else {
+  stateClasses.push("border-(--color-surface-stroke)");
+}
+
+if (disabled) {
+  stateClasses.push(
+    "opacity-60",
+    "cursor-not-allowed",
+    "bg-(--color-surface-elevated)"
+  );
+}
+
+const classes = [...baseClasses, ...stateClasses, className].join(" ");
+---
+
+<input
+  type={type}
+  id={id}
+  name={name}
+  value={value}
+  placeholder={placeholder}
+  disabled={disabled}
+  required={required}
+  aria-invalid={invalid ? "true" : undefined}
+  class={classes}
+  {...rest}
+/>

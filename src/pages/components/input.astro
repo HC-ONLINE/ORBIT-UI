@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import InputComponent from "@components/ui/Input.astro";
+---
+
+<BaseLayout
+  title="Input · orbit-ui"
+  description="Contrato y uso correcto del componente Input"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Input</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Campo de entrada de texto básico. Permite al usuario ingresar datos.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contrato</h2>
+      <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
+        <li>Solo maneja la entrada de datos.</li>
+        <li>No incluye labels ni mensajes de error por defecto (deben componerse externamente).</li>
+        <li>Soporta estados de validación explícitos.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Uso básico</h2>
+
+      <div class="max-w-sm">
+        <InputComponent placeholder="Ingresa tu texto..." />
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Tipos</h2>
+
+      <div class="max-w-sm space-y-4">
+        <InputComponent type="email" placeholder="correo@ejemplo.com" />
+        <InputComponent type="password" placeholder="Contraseña" />
+        <InputComponent type="number" placeholder="123" />
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Estados</h2>
+
+      <div class="max-w-sm space-y-4">
+        <div>
+          <label class="block text-sm mb-1 text-(--color-text-primary)">Disabled</label>
+          <InputComponent disabled placeholder="Campo deshabilitado" />
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1 text-(--color-text-primary)">Invalid</label>
+          <InputComponent invalid placeholder="Campo con error" />
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        No uses el Input sin un label accesible (ya sea visual o mediante <code>aria-label</code>).
+        El componente Input no incluye el label para mantener la flexibilidad de composición.
+      </p>
+    </section>
+  </section>
+</BaseLayout>
