@@ -19,7 +19,10 @@ import InputComponent from "@components/ui/Input.astro";
       <h2 class="text-lg font-medium">Contrato</h2>
       <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
         <li>Solo maneja la entrada de datos.</li>
-        <li>No incluye labels ni mensajes de error por defecto (deben componerse externamente).</li>
+        <li>
+          No incluye labels ni mensajes de error por defecto (deben componerse
+          externamente).
+        </li>
         <li>Soporta estados de validación explícitos.</li>
       </ul>
     </section>
@@ -47,12 +50,16 @@ import InputComponent from "@components/ui/Input.astro";
 
       <div class="max-w-sm space-y-4">
         <div>
-          <label class="block text-sm mb-1 text-(--color-text-primary)">Disabled</label>
+          <label class="block text-sm mb-1 text-(--color-text-primary)"
+            >Disabled</label
+          >
           <InputComponent disabled placeholder="Campo deshabilitado" />
         </div>
 
         <div>
-          <label class="block text-sm mb-1 text-(--color-text-primary)">Invalid</label>
+          <label class="block text-sm mb-1 text-(--color-text-primary)"
+            >Invalid</label
+          >
           <InputComponent invalid placeholder="Campo con error" />
         </div>
       </div>
@@ -62,8 +69,10 @@ import InputComponent from "@components/ui/Input.astro";
       <h2 class="text-lg font-medium">Antipatrón</h2>
 
       <p class="text-sm text-(--color-text-muted)">
-        No uses el Input sin un label accesible (ya sea visual o mediante <code>aria-label</code>).
-        El componente Input no incluye el label para mantener la flexibilidad de composición.
+        No uses el Input sin un label accesible (ya sea visual o mediante <code
+          >aria-label</code
+        >). El componente Input no incluye el label para mantener la
+        flexibilidad de composición.
       </p>
     </section>
   </section>

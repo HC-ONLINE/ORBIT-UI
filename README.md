@@ -39,7 +39,7 @@ src/
 └── layouts/
 └── BaseLayout.astro
 
-````
+```
 
 ---
 
@@ -64,13 +64,12 @@ Ejemplo:
 --color-text-muted
 --color-surface-elevated
 --color-status-error
-````
+```
 
 Uso con Tailwind v4:
 
 ```html
-text-(--color-text-muted)
-bg-(--color-surface-elevated)
+text-(--color-text-muted) bg-(--color-surface-elevated)
 border-(--color-status-error)
 ```
 
