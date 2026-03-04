@@ -1,0 +1,80 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import SelectComponent from "@components/ui/Select.astro";
+---
+
+<BaseLayout
+  title="Select · orbit-ui"
+  description="Contrato y uso correcto del componente Select"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Select</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Campo de selección entre opciones predefinidas. No ejecuta acciones.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contrato</h2>
+      <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
+        <li>Solo representa una elección entre opciones.</li>
+        <li>
+          No incluye label ni mensajes de error (se componen externamente).
+        </li>
+        <li>No ejecuta acciones por sí mismo.</li>
+        <li>Soporta estados de validación explícitos.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Uso básico</h2>
+
+      <div class="max-w-sm">
+        <SelectComponent name="framework">
+          <option value="">Selecciona una opción</option>
+          <option value="astro">Astro</option>
+          <option value="react">React</option>
+          <option value="vue">Vue</option>
+          <option value="svelte">Svelte</option>
+        </SelectComponent>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Estados</h2>
+
+      <div class="max-w-sm space-y-4">
+        <div>
+          <label class="block text-sm mb-1 text-(--color-text-primary)"
+            >Disabled</label
+          >
+          <SelectComponent name="disabled-example" disabled>
+            <option value="">Campo deshabilitado</option>
+            <option value="a">Opción A</option>
+          </SelectComponent>
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1 text-(--color-text-primary)"
+            >Invalid</label
+          >
+          <SelectComponent name="invalid-example" invalid>
+            <option value="">Selecciona una opción</option>
+            <option value="a">Opción A</option>
+          </SelectComponent>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        No uses Select sin un label accesible (visual o mediante <code
+          >aria-label</code
+        >). No lo uses para ejecutar acciones inmediatas; para eso usa Button.
+      </p>
+    </section>
+  </section>
+</BaseLayout>
