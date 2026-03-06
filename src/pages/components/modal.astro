@@ -1,0 +1,117 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ModalComponent from "@components/ui/Modal.astro";
+import ButtonComponent from "@components/ui/Button.astro";
+---
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-modal-open]")
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.modalOpen;
+        const dialog = id
+          ? (document.getElementById(id) as HTMLDialogElement | null)
+          : null;
+        dialog?.showModal();
+      });
+    });
+
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-modal-close]")
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.modalClose;
+        const dialog = id
+          ? (document.getElementById(id) as HTMLDialogElement | null)
+          : null;
+        dialog?.close();
+      });
+    });
+</script>
+
+<BaseLayout
+  title="Modal · orbit-ui"
+  description="Contrato y uso correcto del componente Modal"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Modal</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Diálogo nativo para mostrar contenido relevante sin abandonar la página.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contrato</h2>
+      <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
+        <li>Usa el elemento nativo <code>&lt;dialog&gt;</code>.</li>
+        <li>El contenido se compone mediante slots.</li>
+        <li>No gestiona su propio estado de visibilidad.</li>
+        <li>Se abre externamente con <code>showModal()</code>.</li>
+        <li>Se cierra con el botón interno o vía <code>close()</code>.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Uso básico</h2>
+
+      <ButtonComponent type="button" data-modal-open="modal-basic">
+        Abrir modal
+      </ButtonComponent>
+
+      <ModalComponent id="modal-basic">
+        <span slot="title">Título del modal</span>
+        Contenido principal del modal. Aquí puedes colocar texto, imágenes o cualquier
+        otro elemento.
+      </ModalComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Con acciones</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        Las acciones se componen externamente mediante el slot
+        <code>actions</code>. El modal no conoce ni importa componentes de
+        acción.
+      </p>
+
+      <ButtonComponent type="button" data-modal-open="modal-actions">
+        Abrir modal con acciones
+      </ButtonComponent>
+
+      <ModalComponent id="modal-actions">
+        <span slot="title">Confirmar acción</span>
+        Esta acción no se puede deshacer. ¿Deseas continuar?
+
+        <div slot="actions">
+          <ButtonComponent variant="secondary" data-modal-close="modal-actions">
+            Cancelar
+          </ButtonComponent>
+          <ButtonComponent>Confirmar</ButtonComponent>
+        </div>
+      </ModalComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Sin título</h2>
+
+      <ButtonComponent type="button" data-modal-open="modal-notitle">
+        Abrir modal sin título
+      </ButtonComponent>
+
+      <ModalComponent id="modal-notitle">
+        Contenido sin título. El slot <code>title</code> es opcional.
+      </ModalComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+
+      <p class="text-sm text-(--color-text-muted)">
+        No uses Modal para mensajes triviales o decorativos. No pases HTML como
+        string mediante props; usa siempre slots para componer el contenido.
+      </p>
+    </section>
+  </section>
+</BaseLayout>
