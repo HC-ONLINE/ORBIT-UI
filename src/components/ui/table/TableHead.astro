@@ -1,0 +1,11 @@
+---
+const { class: className = "" } = Astro.props as {
+  class?: string;
+};
+---
+
+<thead
+  class={["bg-(--color-surface-main)", className].filter(Boolean).join(" ")}
+>
+  <slot />
+</thead>

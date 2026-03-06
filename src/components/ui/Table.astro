@@ -1,0 +1,27 @@
+---
+/**
+ * Table — componente estructural para mostrar datos tabulares.
+ * Compuesto por sub-componentes: TableHead, TableBody, TableRow, TableCell, TableHeadCell.
+ */
+
+const { class: className = "" } = Astro.props as {
+  class?: string;
+};
+
+const wrapperClasses = [
+  "w-full",
+  "overflow-x-auto",
+  "rounded-lg",
+  "border",
+  "border-(--color-surface-stroke)",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={wrapperClasses}>
+  <table class="w-full text-sm text-(--color-text-primary) border-collapse">
+    <slot />
+  </table>
+</div>

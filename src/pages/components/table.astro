@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import TableComponent from "@components/ui/Table.astro";
+import TableHeadComponent from "@components/ui/table/TableHead.astro";
+import TableBodyComponent from "@components/ui/table/TableBody.astro";
+import TableRowComponent from "@components/ui/table/TableRow.astro";
+import TableHeadCellComponent from "@components/ui/table/TableHeadCell.astro";
+import TableCellComponent from "@components/ui/table/TableCell.astro";
+
+type User = {
+  name: string;
+  role: string;
+  status: string;
+};
+
+const users: User[] = [
+  { name: "Ana García", role: "Diseñadora", status: "Activa" },
+  { name: "Carlos López", role: "Desarrollador", status: "Activo" },
+  { name: "Marta Pérez", role: "Product Manager", status: "Activa" },
+];
+
+type Column = {
+  key: keyof User;
+  label: string;
+  align?: "left" | "center" | "right";
+};
+
+const columns: Column[] = [
+  { key: "name", label: "Nombre" },
+  { key: "role", label: "Rol" },
+  { key: "status", label: "Estado", align: "right" },
+];
+---
+
+<BaseLayout
+  title="Table · orbit-ui"
+  description="Contrato y uso correcto del componente Table"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Table</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Componente estructural para mostrar datos tabulares. Compuesto por
+        sub-componentes.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contrato</h2>
+      <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
+        <li>Solo muestra datos. No ejecuta acciones ni navega.</li>
+        <li>
+          Compuesto por: <code>Table</code>, <code>TableHead</code>, <code
+            >TableBody</code
+          >, <code>TableRow</code>, <code>TableHeadCell</code>, <code
+            >TableCell</code
+          >.
+        </li>
+        <li>La ordenación y paginación se resuelven externamente.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Uso básico</h2>
+
+      <TableComponent>
+        <TableHeadComponent>
+          <TableRowComponent>
+            <TableHeadCellComponent>Nombre</TableHeadCellComponent>
+            <TableHeadCellComponent>Rol</TableHeadCellComponent>
+            <TableHeadCellComponent align="right">Estado</TableHeadCellComponent
+            >
+          </TableRowComponent>
+        </TableHeadComponent>
+        <TableBodyComponent>
+          <TableRowComponent>
+            <TableCellComponent>Ana García</TableCellComponent>
+            <TableCellComponent>Diseñadora</TableCellComponent>
+            <TableCellComponent align="right">Activa</TableCellComponent>
+          </TableRowComponent>
+          <TableRowComponent>
+            <TableCellComponent>Carlos López</TableCellComponent>
+            <TableCellComponent>Desarrollador</TableCellComponent>
+            <TableCellComponent align="right">Activo</TableCellComponent>
+          </TableRowComponent>
+          <TableRowComponent>
+            <TableCellComponent>Marta Pérez</TableCellComponent>
+            <TableCellComponent>Product Manager</TableCellComponent>
+            <TableCellComponent align="right">Activa</TableCellComponent>
+          </TableRowComponent>
+        </TableBodyComponent>
+      </TableComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Estados de fila</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        <code>TableRow</code> acepta un prop <code>state</code>: <code
+          >base</code
+        > (default), <code>selected</code> o <code>disabled</code>.
+      </p>
+
+      <TableComponent>
+        <TableHeadComponent>
+          <TableRowComponent>
+            <TableHeadCellComponent>Nombre</TableHeadCellComponent>
+            <TableHeadCellComponent>Estado de fila</TableHeadCellComponent>
+          </TableRowComponent>
+        </TableHeadComponent>
+        <TableBodyComponent>
+          <TableRowComponent>
+            <TableCellComponent>Fila base</TableCellComponent>
+            <TableCellComponent>base (default)</TableCellComponent>
+          </TableRowComponent>
+          <TableRowComponent state="selected">
+            <TableCellComponent>Fila seleccionada</TableCellComponent>
+            <TableCellComponent>selected</TableCellComponent>
+          </TableRowComponent>
+          <TableRowComponent state="disabled">
+            <TableCellComponent>Fila deshabilitada</TableCellComponent>
+            <TableCellComponent>disabled</TableCellComponent>
+          </TableRowComponent>
+        </TableBodyComponent>
+      </TableComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Alineación de celdas</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        Tanto <code>TableHeadCell</code> como <code>TableCell</code> aceptan
+        <code>align</code>: <code>left</code> (default), <code>center</code> o
+        <code>right</code>.
+      </p>
+
+      <TableComponent>
+        <TableHeadComponent>
+          <TableRowComponent>
+            <TableHeadCellComponent>Izquierda</TableHeadCellComponent>
+            <TableHeadCellComponent align="center"
+              >Centro</TableHeadCellComponent
+            >
+            <TableHeadCellComponent align="right"
+              >Derecha</TableHeadCellComponent
+            >
+          </TableRowComponent>
+        </TableHeadComponent>
+        <TableBodyComponent>
+          <TableRowComponent>
+            <TableCellComponent>Dato A</TableCellComponent>
+            <TableCellComponent align="center">Dato B</TableCellComponent>
+            <TableCellComponent align="right">Dato C</TableCellComponent>
+          </TableRowComponent>
+        </TableBodyComponent>
+      </TableComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Datos dinámicos</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        Puedes pasar datos dinámicos a tu tabla.
+      </p>
+      <TableComponent>
+        <TableHeadComponent>
+          <TableRowComponent>
+            {
+              columns.map((col) => (
+                <TableHeadCellComponent align={col.align}>
+                  {col.label}
+                </TableHeadCellComponent>
+              ))
+            }
+          </TableRowComponent>
+        </TableHeadComponent>
+
+        <TableBodyComponent>
+          {
+            users.map((user) => (
+              <TableRowComponent>
+                {columns.map((col) => (
+                  <TableCellComponent align={col.align}>
+                    {user[col.key]}
+                  </TableCellComponent>
+                ))}
+              </TableRowComponent>
+            ))
+          }
+        </TableBodyComponent>
+      </TableComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        No uses <code>Table</code> para layouts visuales. No incrustes lógica de ordenación
+        o filtrado dentro del componente; resuélvela externamente.
+      </p>
+    </section>
+  </section>
+</BaseLayout>

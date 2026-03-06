@@ -1,0 +1,13 @@
+---
+const { class: className = "" } = Astro.props as {
+  class?: string;
+};
+---
+
+<tbody
+  class={["divide-y", "divide-(--color-surface-stroke)", className]
+    .filter(Boolean)
+    .join(" ")}
+>
+  <slot />
+</tbody>

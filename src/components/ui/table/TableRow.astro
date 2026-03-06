@@ -1,0 +1,24 @@
+---
+type State = "base" | "selected" | "disabled";
+
+const { state = "base", class: className = "" } = Astro.props as {
+  state?: State;
+  class?: string;
+};
+
+const stateClasses: Record<State, string[]> = {
+  base: ["hover:bg-(--color-surface-sunken)", "transition-colors"],
+  selected: ["bg-(--color-surface-sunken)"],
+  disabled: ["opacity-60", "pointer-events-none"],
+};
+
+const classes = [...stateClasses[state], className].filter(Boolean).join(" ");
+---
+
+<tr
+  class={classes}
+  aria-disabled={state === "disabled" ? "true" : undefined}
+  aria-selected={state === "selected" ? "true" : undefined}
+>
+  <slot />
+</tr>

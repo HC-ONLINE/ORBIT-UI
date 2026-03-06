@@ -1,0 +1,29 @@
+---
+type Align = "left" | "center" | "right";
+
+const { align = "left", class: className = "" } = Astro.props as {
+  align?: Align;
+  class?: string;
+};
+
+const alignClasses: Record<Align, string> = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
+};
+
+const classes = [
+  "px-4",
+  "py-3",
+  "text-sm",
+  "text-(--color-text-primary)",
+  alignClasses[align],
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<td class={classes}>
+  <slot />
+</td>
