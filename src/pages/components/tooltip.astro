@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import TooltipComponent from "@components/ui/Tooltip.astro";
+import ButtonComponent from "@components/ui/Button.astro";
+---
+
+<BaseLayout
+  title="Tooltip · orbit-ui"
+  description="Contrato y uso correcto del componente Tooltip"
+>
+  <section class="mx-auto max-w-4xl px-6 py-12 space-y-12">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">Tooltip</h1>
+      <p class="text-sm text-(--color-text-muted)">
+        Mensaje breve de ayuda contextual que aparece en hover o focus.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contrato</h2>
+      <ul class="list-disc pl-5 text-sm text-(--color-text-muted) space-y-1">
+        <li>Tooltip comunica contexto breve, no contenido principal.</li>
+        <li>Debe estar asociado a un elemento disparador claro.</li>
+        <li>No reemplaza textos largos ni flujos de confirmación.</li>
+        <li>Debe poder mostrarse por hover y por focus.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Uso básico</h2>
+
+      <TooltipComponent text="Acción disponible para administradores">
+        <ButtonComponent variant="secondary">Permisos</ButtonComponent>
+      </TooltipComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Contenido por slot</h2>
+
+      <TooltipComponent>
+        <span
+          class="text-sm text-(--color-text-primary) underline decoration-dotted"
+        >
+          ¿Qué significa este estado?
+        </span>
+
+        <span slot="content">
+          Estado sincronizado con el sistema externo.
+        </span>
+      </TooltipComponent>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Posiciones</h2>
+
+      <div class="flex flex-wrap gap-8">
+        <TooltipComponent text="Tooltip superior" position="top">
+          <ButtonComponent variant="secondary">Top</ButtonComponent>
+        </TooltipComponent>
+
+        <TooltipComponent text="Tooltip derecho" position="right">
+          <ButtonComponent variant="secondary">Right</ButtonComponent>
+        </TooltipComponent>
+
+        <TooltipComponent text="Tooltip inferior" position="bottom">
+          <ButtonComponent variant="secondary">Bottom</ButtonComponent>
+        </TooltipComponent>
+
+        <TooltipComponent text="Tooltip izquierdo" position="left">
+          <ButtonComponent variant="secondary">Left</ButtonComponent>
+        </TooltipComponent>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-medium">Antipatrón</h2>
+      <p class="text-sm text-(--color-text-muted)">
+        No uses Tooltip para mostrar información crítica, mensajes largos o
+        acciones. En esos casos usa componentes de contenido persistente.
+      </p>
+    </section>
+  </section>
+</BaseLayout>

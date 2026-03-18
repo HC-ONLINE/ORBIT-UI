@@ -1,0 +1,63 @@
+---
+type Position = "top" | "right" | "bottom" | "left";
+
+const {
+  text = "",
+  position = "top",
+  class: className = "",
+} = Astro.props as {
+  text?: string;
+  position?: Position;
+  class?: string;
+};
+
+const hasTooltipContent = Boolean(text) || Astro.slots.content;
+
+const tooltipBaseClasses = [
+  "pointer-events-none",
+  "absolute",
+  "z-20",
+  "max-w-xs",
+  "rounded-md",
+  "border",
+  "border-(--color-surface-stroke)",
+  "bg-(--color-surface-elevated)",
+  "px-2",
+  "py-1",
+  "text-xs",
+  "text-(--color-text-primary)",
+  "shadow-sm",
+  "opacity-0",
+  "transition-opacity",
+  "group-hover:opacity-100",
+  "group-focus-within:opacity-100",
+  "whitespace-nowrap",
+  className,
+];
+
+const positionClasses: Record<Position, string[]> = {
+  top: ["bottom-full", "left-1/2", "-translate-x-1/2", "mb-2"],
+  right: ["left-full", "top-1/2", "-translate-y-1/2", "ml-2"],
+  bottom: ["top-full", "left-1/2", "-translate-x-1/2", "mt-2"],
+  left: ["right-full", "top-1/2", "-translate-y-1/2", "mr-2"],
+};
+
+const tooltipClasses = [
+  ...tooltipBaseClasses,
+  ...positionClasses[position],
+].join(" ");
+---
+
+<span class="group relative inline-flex items-center">
+  <span class="inline-flex" tabindex="0">
+    <slot />
+  </span>
+
+  {
+    hasTooltipContent && (
+      <span role="tooltip" class={tooltipClasses}>
+        {Astro.slots.content ? <slot name="content" /> : text}
+      </span>
+    )
+  }
+</span>
